@@ -1,0 +1,50 @@
+@mixin fluid-text($max: 48, $min: 16) {
+  font-size: clamp(
+    #{$min}px,
+    #{$max / 1440 * 100}vw,
+    #{$max}px
+  ); //В среднем значении функции clamp() указываем соотношение максимального размера шрифта (px) к ширине Desktop-макета (px)
+}
+
+@mixin reset-link {
+  //Сбрасываем стандартные визуальные свойства ссылки
+  color: inherit;
+
+  &,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin reset-button {
+  //Сбрасываем стандартые свойства кнопок
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+@mixin flex-center($isInline: false) {
+  @if $isInline {
+    //Описываем случай, когда переменная isInline = true
+    display: inline-flex;
+  } @else {
+    //Описываем случай, когда переменная isInline = false, т.е. по умолчанию
+    display: flex;
+  }
+
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+@mixin square($size) {
+  //Задает пропорции 1:1
+  width: $size;
+  aspect-ratio: 1;
+}
