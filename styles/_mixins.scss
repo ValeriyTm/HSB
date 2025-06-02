@@ -1,10 +1,35 @@
+@use "sass:math"; //Подключаем встроенный в Sass пакет Math
+
 @mixin fluid-text($max: 48, $min: 16) {
+  //В аргументы $max и $min передедим значения шрифта из Desktop (по умолчанию установили 48px)
+  // и из Mobile (по умолчанию установили 16px) макетов.
+  $maxViewportWidth: 1240; //Тут задаем максимальную ширину Desktop-макета (контейнера макета)
+  $minViewportWidth: 360; //Тут задаем максимальную ширину Mobile-макета
+
+  $maxSize: math.div($max, 16); //Используем функцию из пакета Math
+  $minSize: math.div($min, 16); //Используем функцию из пакета Math
+  $maxWidth: math.div($maxViewportWidth, 16);
+  $minWidth: math.div($minViewportWidth, 16);
+
+  $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+  $yAxisIntersection: -$minWidth * $slope + $minSize;
+
+  //Сейчас будет сама функция вычисления на основе наших введенных аргументов:
   font-size: clamp(
-    #{$min}px,
-    #{$max / 1440 * 100}vw,
-    #{$max}px
-  ); //В среднем значении функции clamp() указываем соотношение максимального размера шрифта (px) к ширине Desktop-макета (px)
+    #{$minSize * 1rem},
+    #{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+    #{$maxSize * 1rem}
+  );
 }
+
+// Более простой метод реализации миксина
+// @mixin fluid-text($max: 48, $min: 16) {
+//   font-size: clamp(
+//     #{$min}px,
+//     #{calc($max / 1440) * 100}vw,
+//     #{$max}px
+//   ); //В среднем значении функции clamp() указываем соотношение максимального размера шрифта (px) к ширине Desktop-макета (px)
+// }
 
 @mixin reset-link {
   //Сбрасываем стандартные визуальные свойства ссылки
@@ -35,6 +60,7 @@
   justify-content: center;
   align-items: center;
 }
+//Миксин выше для того, чтобы вместо трех строк свойств писать одну: "@include flex-center(true)"
 
 @mixin abs-center {
   position: absolute;
