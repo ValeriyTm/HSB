@@ -1,4 +1,4 @@
-/node-modules
+/node_modules
 prepros.config
 package-lock.json
 package.json
