@@ -247,6 +247,19 @@ svg * {
   padding-inline: var(--container-padding-x);
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
 @media (max-width: 767.98 px) {
   .hidden-mobile {
     display: none !important;
@@ -342,8 +355,4 @@ h4 {
   -webkit-column-gap: 40px;
      -moz-column-gap: 40px;
           column-gap: 40px;
-}
-
-.header__menu-item {
-  background-color: rgb(186, 14, 149);
 }
