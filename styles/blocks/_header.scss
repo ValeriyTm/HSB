@@ -1,6 +1,4 @@
-.menu-overlay__item {
-  color: rgb(102, 195, 9);
-}
+@use "helpers" as *;
 
 .header {
   padding-top: 60px;
@@ -20,6 +18,32 @@
       display: flex;
       align-items: center;
       column-gap: 40px;
+    }
+
+    &-link {
+      position: relative; //добавили для послудующего добавления элемента after и его позиционирования
+      //Увеличиваем область нажатия на ссылку навбара:
+      display: inline-flex;
+      align-items: center;
+      height: 48px;
+
+      @include hover {
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        translate: -50%; //Сдвиг только по оси x
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        transition-duration: inherit;
+      }
     }
   }
 }
