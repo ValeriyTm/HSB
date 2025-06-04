@@ -1,12 +1,12 @@
 //Зададим переменные под медиазапросы:
 $desktop-above: 1281px; //Под поход mobile-first (min-width)
-$desktop: 1280.98 px; //Под поход desktop-first (max-width)
+$desktop: 1280.98px; //Под поход desktop-first (max-width)
 
 $tablet-above: 1024px; //Под поход mobile-first (min-width)
-$tablet: 1023.98 px; //Под поход desktop-first (max-width)
+$tablet: 1023.98px; //Под поход desktop-first (max-width)
 
 $mobile-above: 768px; //Под поход mobile-first (min-width)
-$mobile: 767.98 px; //Под поход desktop-first (max-width)
+$mobile: 767.98px; //Под поход desktop-first (max-width)
 
 @mixin desktop-above {
   @media (min-width: $desktop-above) {
