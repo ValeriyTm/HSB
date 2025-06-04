@@ -8,6 +8,9 @@ $tablet: 1023.98px; //Под поход desktop-first (max-width)
 $mobile-above: 768px; //Под поход mobile-first (min-width)
 $mobile: 767.98px; //Под поход desktop-first (max-width)
 
+$mobile-s-above: 481px; //Для адаптации списка партнеров из Hero-section
+$mobile-s: 480.98px; // Для адаптации списка партнеров из Hero-section
+
 @mixin desktop-above {
   @media (min-width: $desktop-above) {
     @content;
@@ -40,6 +43,18 @@ $mobile: 767.98px; //Под поход desktop-first (max-width)
 
 @mixin mobile {
   @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin mobile-s-above {
+  @media (min-width: $mobile-s-above) {
+    @content;
+  }
+}
+
+@mixin mobile-s {
+  @media (max-width: $mobile-s) {
     @content;
   }
 }
