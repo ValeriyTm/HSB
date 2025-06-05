@@ -25,7 +25,8 @@
     height: calc(100% - var(--contanctUsImageOffsetY) * 2);
     aspect-ratio: 1;
 
-    background: url("../../images/decor-image.svg") center/contain no-repeat;
+    background: url("https://valeriytm.github.io/HSB/images/decor-image.svg")
+      center/contain no-repeat;
 
     @include tablet {
       display: none;
