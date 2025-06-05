@@ -40,6 +40,18 @@
         ); //Смещаем влево контент в слайдере для экранов 1024px и выше (чтобы было как в макете)
       }
 
+      &::-webkit-scrollbar {
+        //Стилизация полосы скроллбара
+        background-color: var(--color-gray-alt);
+        height: 20px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        //Стилизация ползунка скроллбара
+        background-color: var(--color-accent);
+        border-radius: 10px;
+      }
+
       @include tablet {
         column-gap: 30px;
       }
