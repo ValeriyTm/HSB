@@ -1,0 +1,129 @@
+@use "helpers" as *;
+
+.process {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    counter-reset: custom-counter; // Создаем нумерацию
+    list-style: none; // Создаем нумерацию
+
+    @include mobile {
+      row-gap: 20px;
+    }
+  }
+
+  &__item {
+    --counterContent: counter(custom-counter); // Создаем нумерацию
+
+    counter-increment: custom-counter; // Создаем нумерацию
+
+    &:nth-child(-n + 9) {
+      //Выбираем первые 9 элементов списка, т.к. с десятого ноль впереди уже не нужен
+      --counterContent: "0" counter(custom-counter); //Добавили ноль впереди
+    }
+  }
+
+  &__accordion {
+    --accordion-vertical-rotate: 90deg; //Для создания поворота плюса в минус
+
+    padding: 40px 60px;
+    background-color: var(--color-gray);
+    border: var(--border);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow);
+    transition-duration: var(--transition-duration);
+
+    @include hover {
+      background-color: var(--color-accent);
+    }
+
+    @include mobile {
+      padding: 30px;
+    }
+
+    &[open] {
+      --accordion-vertical-rotate: 0deg;
+
+      background-color: var(--color-accent);
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 50px;
+
+      cursor: pointer;
+      user-select: none;
+
+      @include mobile {
+        column-gap: 28px;
+      }
+    }
+
+    &-title {
+      @include fluid-text(30, 18);
+
+      display: flex; // Создаем нумерацию
+      align-items: center; // Создаем нумерацию
+      column-gap: 25px; // Создаем нумерацию
+
+      @include mobile {
+        column-gap: 33px;
+      }
+
+      &::before {
+        // Создаем нумерацию
+        content: var(--counterContent);
+        font-size: 2em;
+
+        @include mobile {
+          font-size: 30px;
+        }
+      }
+    }
+
+    &-indicator {
+      //Добавляем кнопку открытия и закрытия аккордеона
+      @include flex-center;
+      @include square(58px);
+
+      flex-shrink: 0; //Чтобы индикатор не сжимался при сужении экрана
+
+      position: relative; //Для позиционирования элементов плюса и минуса, которые будут заданы через псевдоэлементы
+
+      background-color: var(--color-gray);
+      border: var(--border);
+      border-radius: 50%;
+
+      @include mobile {
+        @include square(30px);
+      }
+
+      &::before,
+      &::after {
+        //Создаем две черточки (одня для before, вторая для after)
+        content: "";
+
+        @include abs-center;
+        width: 45%;
+        height: 10%;
+        background-color: var(--color-dark);
+      }
+
+      &::after {
+        //Разорачиваем палочку-after на 90 градусов
+        rotate: var(--accordion-vertical-rotate);
+        transition-duration: var(--transition-duration);
+      }
+    }
+
+    &-body {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: var(--border); //Линия между текстом и заголовком
+    }
+  }
+}
