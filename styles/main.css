@@ -2153,3 +2153,7 @@ h4,
     color: var(--color-accent);
   }
 }
+
+h1 {
+  font-weight: 900;
+}
